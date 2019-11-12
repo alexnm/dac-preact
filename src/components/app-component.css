@@ -1,0 +1,28 @@
+.container {
+  width: 1065px;
+  height: 714px;
+  display: block;
+  font-size: 16px;
+  font-family: 'Open Sans';
+  background-color: #fcfcfc;
+}
+.image {
+  width: 200px;
+}
+.image1 {
+  width: 200px;
+}
+.link {
+  color: #000;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.textblock {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.navlink {
+  color: #000;
+  cursor: pointer;
+  text-decoration: underline;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><title>dac</title><meta viewport="width=device-width, initial-scale=1.0"><link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+><style>body{margin:0}#__next>div:first-child{min-height:100vh}*,:before,:after{box-sizing: border-box}</style><link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
+><link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap"
+><% if (htmlWebpackPlugin.options.manifest.theme_color) { %>
+	<meta name="theme-color" content="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
+<% } %>
+<% for (var chunk of webpack.chunks) { %>
+ <% if (chunk.names.length === 1 && chunk.names[0] === 'polyfills') continue; %>
+	<% for (var file of chunk.files) { %>
+		<% if (htmlWebpackPlugin.options.preload && file.match(/.(js|css)$/)) { %>
+			<link rel="preload" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/.css$/)?'style':'script' %>">
+		<% } else if (file.match(/manifest.json$/)) { %>
+			<link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath + file %>">
+		<% } %>
+	<% } %>
+<% } %></head><body><%= htmlWebpackPlugin.options.ssr({
+	url: '/'
+}) %><script
+  defer
+  src="<%= htmlWebpackPlugin.files.chunks['bundle'].entry %>"
+></script><script>if(typeof fetch==='undefined')document.head.appendChild(document.createElement('script')).src='<%= htmlWebpackPlugin.files.chunks["polyfills"].entry %>'</script></body></html>
